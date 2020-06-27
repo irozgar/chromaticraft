@@ -1,0 +1,21 @@
+name: Publish docker image
+on:
+  push:
+    branches:
+      - master
+      - ci
+
+jobs:
+  build_and_publish:
+    name: Push docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: irozgar/chromaticraft/chromaticraft
+          tags: latest
+
