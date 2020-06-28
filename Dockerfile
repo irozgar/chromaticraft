@@ -17,4 +17,4 @@ WORKDIR /minecraft
 COPY --from=builder /spigot-1.16.1.jar spigot.jar
 COPY eula.txt server.properties spigot.yml /minecraft/
 
-CMD [ "java", "-jar", "spigot.jar" ]
+CMD [ "java", "-Xmx2048M", "-jar", "spigot.jar" ]
